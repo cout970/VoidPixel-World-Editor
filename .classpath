@@ -2,19 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="I:/Development/TheLifeProject/lib/jars/lwjgl.jar" sourcepath="I:/Development/TheLifeProject/lib/javadoc">
+	<classpathentry kind="lib" path="libs/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="libs/jdom-2.0.5.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="libs/lwjgl.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/I:/Development/TheLifeProject/lib/javadoc/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="I:/Development/TheLifeProject/lib/natives_win"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="WorldEditorVoidPixel/natives/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="I:/Development/TheLifeProject/lib/jars/lwjgl_util.jar"/>
-	<classpathentry kind="lib" path="I:/Development/TheLifeProject/lib/jars/slick-util.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/I:/Development/TheLifeProject/lib/javadoc/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="I:/Development/thirdParty/gson-2.3.1.jar"/>
-	<classpathentry kind="lib" path="I:/Development/thirdParty/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/slick-util.jar"/>
+	<classpathentry kind="lib" path="libs/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

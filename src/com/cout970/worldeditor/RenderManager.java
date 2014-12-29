@@ -11,15 +11,15 @@ public class RenderManager {
 	public static float scale = 0.1f;
 	
 	public static void renderBlocks() {
-		if(ChunkStorage.storage != null){
-			renderChunk(ChunkStorage.storage);
+		for(Chunk c : ChunkStorage.storage){
+			renderChunk(c);
 		}
 	}
 	
 	public static void renderChunk(Chunk c) {
 		glPushMatrix();
 		glColor4f(1, 1, 1, 1);
-		glTranslatef(c.X*scale*16 - 0.5f, 1, c.Z*scale*16);
+		glTranslatef(c.X*scale*8 - 0.5f, 1, c.Z*scale*8);
 		glScalef(scale, scale, scale);
 		for (int k = 0; k < 32; k++) {
 			for (int i = 0; i < 8; i++) {
