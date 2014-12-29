@@ -9,7 +9,7 @@ public class Inicio {
 	private static boolean working = true;
 
 	public static void main(String[] args){
-		JsonLoader.loadChunk();
+		JsonLoader.loadChunks();
 		initUtil();
 		TextureManager.loadTextures();
 		WorkLoop();
@@ -17,7 +17,7 @@ public class Inicio {
 
 	private static void WorkLoop() {
 		while(working){
-			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 			RenderManager.renderBlocks();
 			KeyLisener.ListenKeyboard();
 			Display.update();
@@ -25,7 +25,7 @@ public class Inicio {
 			working = !Display.isCloseRequested();
 		}
 		Display.destroy();
-		
+		System.exit(0);
 	}
 
 	private static void initUtil() {

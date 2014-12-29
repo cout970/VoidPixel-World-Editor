@@ -4,10 +4,16 @@ import static org.lwjgl.input.Keyboard.*;
 import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Mouse;
 
 public class KeyLisener {
 
+	public static int MouseX;
+	public static int MouseY;
+	public static boolean isLeftClick = false;
+	public static boolean isRightClick = false;
 	private static float speed = 0.025f;
+	
 
 	public static void ListenKeyboard() {
 		if(!isCreated()){
@@ -16,8 +22,7 @@ public class KeyLisener {
 			} catch (LWJGLException e) {
 				e.printStackTrace();
 			}
-		}
-		else{
+		}else{
 			if(isKeyDown(KEY_A)){
 				glTranslatef(speed,0,0);
 			}
@@ -37,19 +42,45 @@ public class KeyLisener {
 				glTranslatef(0,-speed,0);
 			}
 			if(isKeyDown(KEY_Z)){
-				glRotatef(speed*10, 1, 0, 0);
+				GLManager.addAngleX(speed*10);
 			}
 			if(isKeyDown(KEY_X)){
-				glRotatef(-speed*10, 1, 0, 0);
+				GLManager.addAngleX(-speed*10);
 			}
 			
 			if(isKeyDown(KEY_C)){
-				glRotatef(speed*10, 0, 1, 0);
+				GLManager.addAngleY(speed*10);
 			}
 			if(isKeyDown(KEY_V)){
-				glRotatef(-speed*10, 0, 1, 0);
+				GLManager.addAngleY(-speed*10);
 			}
 		}
+		if(!Mouse.isCreated()){
+			try {
+				Mouse.create();
+			} catch (LWJGLException e) {
+				e.printStackTrace();
+			}
+		}else{
+			MouseX = Mouse.getX();
+			MouseY = Mouse.getY();
+
+			if(Mouse.isButtonDown(0)){
+				if(!isLeftClick){
+					isLeftClick = true;
+				}
+			}else{
+				isLeftClick = false;
+			}
+			if(Mouse.isButtonDown(1)){
+				if(!isRightClick){
+					isRightClick = true;
+				}
+			}else{
+				isRightClick = false;
+			}
+		}
+		
 	}
 
 }

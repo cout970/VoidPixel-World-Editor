@@ -12,11 +12,20 @@ public class Block {
 	public boolean prevClickLeft;
 	public Location location;
 	public Color colors;
+	private boolean shouldRender = false;
 	
 	public Block(){
-		
+
 	}
-	
+
+	public Block(Material m,double x,double y, double z){
+		material = m;
+		X = x;
+		Y = y;
+		Z = z;
+		colors = new Color();
+	}
+
 	public double getX(){
 		return X;
 	}
@@ -28,4 +37,12 @@ public class Block {
 	public double getZ(){
 		return Z;
 	}	
+	
+	public boolean shouldRender(){
+		return shouldRender;
+	}
+	
+	public void setRenderizable(boolean ren){
+		shouldRender = ren;
+	}
 }

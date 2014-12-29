@@ -13,6 +13,8 @@ public class GLManager {
 	public static GLManager instance;
 	private final int frameHeight = 500;
 	private final int frameWidth = 500;
+	public static float angleX = 0;
+	public static float angleY = 0;
 
 	public void InitDisplay(){
 
@@ -36,15 +38,26 @@ public class GLManager {
 			
 			GL11.glMatrixMode(GL11.GL_MODELVIEW);
 			
-			GL11.glDisable(GL11.GL_CULL_FACE);
-			GL11.glDepthMask(true);
-			GL11.glEnable(GL11.GL_DEPTH_FUNC);
+			GL11.glEnable(GL11.GL_DEPTH_BUFFER_BIT);
+			GL11.glEnable(GL11.GL_DEPTH_TEST);
+			
 			GL11.glTranslatef(0, 0, -5);
-			glRotatef(-30, 1, 0, 0);
-			glRotatef(-45, 0, 1, 0);
+			addAngleX(-30);
+			addAngleY(-45);
 			
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
+
+	}
+	
+	public static void addAngleX(float angle){
+		angleX += angle;
+		glRotatef(angle, 1, 0, 0);
+	}
+	
+	public static void addAngleY(float angle){
+		angleY += angle;
+		glRotatef(angle, 0, 1, 0);
 	}
 }

@@ -2,6 +2,7 @@ package com.cout970.worldeditor;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import com.cout970.worldeditor.WorldEditor.State;
 import com.cout970.worldeditor.world.Block;
 import com.cout970.worldeditor.world.Chunk;
 import com.cout970.worldeditor.world.ChunkStorage;
@@ -13,6 +14,13 @@ public class RenderManager {
 	public static void renderBlocks() {
 		for(Chunk c : ChunkStorage.storage){
 			renderChunk(c);
+		}
+		if(WorldEditor.estado == State.SELECT){
+			glPushMatrix();
+			glScalef(scale, scale, scale);
+			glScalef(1.1f, 1.1f, 1.1f);
+			renderBlock(WorldEditor.selectBlock);
+			glPopMatrix();
 		}
 	}
 	
@@ -29,6 +37,7 @@ public class RenderManager {
 			}
 		}
 		glPopMatrix();
+		
 	}
 
 	public static void renderBlock(Block b){
@@ -37,10 +46,10 @@ public class RenderManager {
 		glTranslatef((float)b.getX(), (float)b.getY(),(float)b.getZ());
 		RenderUtil.bindTexture(TextureManager.getTexture(b.material));
 		glColor4f(b.colors.red, b.colors.green, b.colors.blue, b.colors.alpha);
-		glBegin(GL_QUADS);
 		RenderUtil.block();
 		glEnd();
 		glPopMatrix();
+
 	}
 
 }
