@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 public class JsonLoader { 
 
-	public static String chunksFolder = System.getProperty("user.home") + "/Desktop/voidpixel/";
+	public static String chunksFolder = "./chunks/";//System.getProperty("user.home") + "/Desktop/voidpixel/";
 	public static List<File> chunks = new ArrayList<File>();
 
 	public static void loadChunks(){
@@ -48,7 +48,7 @@ public class JsonLoader {
 				r.write(json);
 				r.close();
 			}
-			System.out.println(ChunkStorage.storage.size()+" chunks cargados");
+			System.out.println(ChunkStorage.storage.size()+" chunks guardados");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

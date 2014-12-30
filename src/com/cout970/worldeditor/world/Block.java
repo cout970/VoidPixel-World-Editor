@@ -27,15 +27,15 @@ public class Block {
 	}
 
 	public double getX(){
-		return X;
+		return location.X;
 	}
 	
 	public double getY(){
-		return Y;
+		return location.Y;
 	}
 	
 	public double getZ(){
-		return Z;
+		return location.Z;
 	}	
 	
 	public boolean shouldRender(){

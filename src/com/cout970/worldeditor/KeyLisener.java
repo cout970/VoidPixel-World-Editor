@@ -1,7 +1,20 @@
 package com.cout970.worldeditor;
 
-import static org.lwjgl.input.Keyboard.*;
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.input.Keyboard.KEY_A;
+import static org.lwjgl.input.Keyboard.KEY_C;
+import static org.lwjgl.input.Keyboard.KEY_D;
+import static org.lwjgl.input.Keyboard.KEY_E;
+import static org.lwjgl.input.Keyboard.KEY_G;
+import static org.lwjgl.input.Keyboard.KEY_Q;
+import static org.lwjgl.input.Keyboard.KEY_S;
+import static org.lwjgl.input.Keyboard.KEY_V;
+import static org.lwjgl.input.Keyboard.KEY_W;
+import static org.lwjgl.input.Keyboard.KEY_X;
+import static org.lwjgl.input.Keyboard.KEY_Z;
+import static org.lwjgl.input.Keyboard.create;
+import static org.lwjgl.input.Keyboard.isCreated;
+import static org.lwjgl.input.Keyboard.isKeyDown;
+import static org.lwjgl.opengl.GL11.glTranslatef;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
@@ -54,6 +67,10 @@ public class KeyLisener {
 			if(isKeyDown(KEY_V)){
 				GLManager.addAngleY(-speed*10);
 			}
+			
+			if(isKeyDown(KEY_G)){
+				JsonLoader.saveChunks();
+			}
 		}
 		if(!Mouse.isCreated()){
 			try {
@@ -68,6 +85,10 @@ public class KeyLisener {
 			if(Mouse.isButtonDown(0)){
 				if(!isLeftClick){
 					isLeftClick = true;
+//					Block b = RayTracer.rayTrace();
+//					if(b != null){
+//						b.material.material = "HARD_STONE";
+//					}
 				}
 			}else{
 				isLeftClick = false;

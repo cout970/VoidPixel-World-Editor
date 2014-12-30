@@ -21,6 +21,7 @@ public class TextureManager {
 	public static Texture wood;
 	public static Texture select;
 	public static Texture hard_stone;
+	private static Texture sand;
 	
 	public static Texture getTexture(Material material) {
 		if(material.material.equalsIgnoreCase("GRASS"))return grass;
@@ -29,6 +30,7 @@ public class TextureManager {
 		if(material.material.equalsIgnoreCase("HARD_STONE"))return hard_stone;
 		if(material.material.equalsIgnoreCase("WOOD"))return wood;
 		if(material.material.equalsIgnoreCase("AIR"))return air;
+		if(material.material.equalsIgnoreCase("SAND"))return sand;
 		if(material.material.equalsIgnoreCase("SELECT"))return select;
 		System.out.println(material.material);
 		return air;
@@ -43,6 +45,7 @@ public class TextureManager {
 		grass = RegisterTexture("grass");
 		select = RegisterTexture("select");
 		hard_stone = RegisterTexture("hard_stone");
+		sand = RegisterTexture("sand");
 	}
 	
 	public static Texture RegisterTexture(String name){

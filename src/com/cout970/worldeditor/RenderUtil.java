@@ -83,7 +83,8 @@ public class RenderUtil {
 	}
 	
 	public static void line(Vector3 a, Vector3 b){
-		glBegin(GL_LINE);
+		bindTexture(TextureManager.water);
+		glBegin(GL_LINES);
 		glVertex3d(a.x, a.y, a.z);
 		glVertex3d(b.x, b.y, b.z);
 		glEnd();

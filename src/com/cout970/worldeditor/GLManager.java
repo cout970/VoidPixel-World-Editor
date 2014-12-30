@@ -11,8 +11,8 @@ import org.lwjgl.util.glu.GLU;
 public class GLManager {
 
 	public static GLManager instance;
-	private final int frameHeight = 500;
-	private final int frameWidth = 500;
+	public final int frameHeight = 500;
+	public final int frameWidth = 500;
 	public static float angleX = 0;
 	public static float angleY = 0;
 

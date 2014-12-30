@@ -1,8 +1,12 @@
 package com.cout970.worldeditor;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glColor4f;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glPopMatrix;
+import static org.lwjgl.opengl.GL11.glPushMatrix;
+import static org.lwjgl.opengl.GL11.glScalef;
+import static org.lwjgl.opengl.GL11.glTranslatef;
 
-import com.cout970.worldeditor.WorldEditor.State;
 import com.cout970.worldeditor.util.Side;
 import com.cout970.worldeditor.world.Block;
 import com.cout970.worldeditor.world.Chunk;
@@ -14,6 +18,7 @@ public class RenderManager {
 	public static boolean isFirst = true;
 	
 	public static void renderBlocks() {
+		
 		if(isFirst){
 			isFirst = false;
 			for(Chunk c : ChunkStorage.storage){
@@ -29,21 +34,14 @@ public class RenderManager {
 		for(Chunk c : ChunkStorage.storage){
 			renderChunk(c);
 		}
-		if(WorldEditor.estado == State.SELECT){
-			glPushMatrix();
-			glScalef(scale, scale, scale);
-			glScalef(1.1f, 1.1f, 1.1f);
-			renderBlock(WorldEditor.selectBlock);
-			glPopMatrix();
-		}
 	}
 	
 	private static boolean shouldRender(Block block) {
 		if(block.material.material.equalsIgnoreCase("AIR"))return false;
 		for(Side s: Side.values()){
-			int x = (int)block.X+s.OffsetX;
-			int y = (int)-block.Y+s.OffsetY;
-			int z = (int)block.Z+s.OffsetZ;
+			int x = (int)block.getX()+s.OffsetX;
+			int y = (int)-block.getY()+s.OffsetY;
+			int z = (int)block.getZ()+s.OffsetZ;
 			
 			Block b = WorldEditor.getBlock(x, y, z);
 			if(b != null){
