@@ -9,8 +9,6 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-import resources.Icons;
-
 import com.cout970.worldeditor.world.Material;
 
 public class TextureManager {
@@ -22,11 +20,13 @@ public class TextureManager {
 	public static Texture stone;
 	public static Texture wood;
 	public static Texture select;
+	public static Texture hard_stone;
 	
 	public static Texture getTexture(Material material) {
 		if(material.material.equalsIgnoreCase("GRASS"))return grass;
 		if(material.material.equalsIgnoreCase("WATER"))return water;
-		if(material.material.equalsIgnoreCase("HARD_STONE"))return stone;
+		if(material.material.equalsIgnoreCase("STONE"))return stone;
+		if(material.material.equalsIgnoreCase("HARD_STONE"))return hard_stone;
 		if(material.material.equalsIgnoreCase("WOOD"))return wood;
 		if(material.material.equalsIgnoreCase("AIR"))return air;
 		if(material.material.equalsIgnoreCase("SELECT"))return select;
@@ -42,15 +42,16 @@ public class TextureManager {
 		water = RegisterTexture("water");
 		grass = RegisterTexture("grass");
 		select = RegisterTexture("select");
+		hard_stone = RegisterTexture("hard_stone");
 	}
 	
 	public static Texture RegisterTexture(String name){
 		try{
-			Texture texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(Icons.class.getResource(name+".png").getPath()));
+			Texture texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("./assets/"+name+".png"));
 			return texture;
 		}catch(Exception e){
 			try {
-				return TextureLoader.getTexture("png", new FileInputStream(new File(Icons.class.getResource("default.png").getFile())));
+				return TextureLoader.getTexture("png", new FileInputStream(new File("./assets/default.png")));
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
