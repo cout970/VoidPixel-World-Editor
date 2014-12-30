@@ -28,9 +28,9 @@ public class RenderManager {
 				}
 			}
 		}
-		for(Chunk c : ChunkStorage.storage){
-			renderChunk(c);
-		}
+//		for(Chunk c : ChunkStorage.storage){
+//			renderChunk(c);
+//		}
 		drawCuadricula();
 		GLManager.camara.renderCamara();
 	}
@@ -39,7 +39,7 @@ public class RenderManager {
 		glPushMatrix();
 		glColor4f(1, 1, 1, 1);
 		RenderUtil.bindTexture(TextureManager.water);
-		glLineWidth(1000);
+		glLineWidth(10);
 		RenderUtil.line(new Vector3(0, 0, 0), new Vector3(10, 0, 0));
 		RenderUtil.line(new Vector3(0, 0, 0), new Vector3(0, 10, 0));
 		RenderUtil.line(new Vector3(0, 0, 0), new Vector3(0, 0, 10));

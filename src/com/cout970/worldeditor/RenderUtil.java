@@ -94,7 +94,6 @@ public class RenderUtil {
 	}
 
 	public static void point(Vector3 a) {
-		bindTexture(TextureManager.water);
 		glBegin(GL_POINT);
 		glVertex3d(a.x, a.y, a.z);
 		glEnd();	

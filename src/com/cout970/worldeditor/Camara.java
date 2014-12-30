@@ -39,10 +39,26 @@ public class Camara {
 	public void renderCamara() {
 		GL11.glPushMatrix();
 		GL11.glLineWidth(1000);
-		GL11.glPointSize(100);
+		float scale = RenderManager.scale;
+		
+		Vector3 cero = new Vector3(0, 0, 0);
+		Vector3 cam = new Vector3(-cameraX, -cameraY, -cameraZ);
+		
+		cam.rotateX(Math.toRadians(-angleX));
+		cam.rotateY(Math.toRadians(-angleY));
+		cam.rotateZ(Math.toRadians(-angleZ));
+		cam.multiply(scale);
+		
+		float a = 2 * (float)KeyLisener.MouseX/GLManager.instance.frameWidth  - 1;
+		float b = 2 * (float)KeyLisener.MouseY/GLManager.instance.frameHeight - 1;
+		
+		
+		Vector3 pos = new Vector3(-a*2-cameraX, -b*2-cameraY, 0);
+		cam.add(pos);
+		cero.add(pos);
+		
 		RenderUtil.bindTexture(TextureManager.select);
-		RenderUtil.line(new Vector3(0, 0, 0),new Vector3(cameraX, cameraY, cameraZ));
+		RenderUtil.line(cam,cero);
 		GL11.glPopMatrix();
-//		System.out.println(toString());
 	}
 }

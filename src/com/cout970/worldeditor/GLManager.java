@@ -33,7 +33,7 @@ public class GLManager {
 
 			GL11.glMatrixMode(GL11.GL_PROJECTION);
 			GL11.glLoadIdentity();
-			GLU.gluPerspective(-30f, frameWidth/frameWidth, 0.0001f, 100);
+			GLU.gluPerspective(-30f, frameWidth/frameHeight, 0.1f, 100);
 			
 			GL11.glMatrixMode(GL11.GL_MODELVIEW);
 			
@@ -41,8 +41,8 @@ public class GLManager {
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
 			GL11.glLoadIdentity();
 			camara.move(0.25f, 1.5f, -7f);
-			camara.addAngleX(-30);
-			camara.addAngleY(-45);
+//			camara.addAngleX(-30);
+//			camara.addAngleY(-45);
 			
 		} catch (LWJGLException e) {
 			e.printStackTrace();
