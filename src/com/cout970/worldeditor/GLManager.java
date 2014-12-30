@@ -1,6 +1,6 @@
 package com.cout970.worldeditor;
 
-import static org.lwjgl.opengl.GL11.glRotatef;
+import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -13,8 +13,7 @@ public class GLManager {
 	public static GLManager instance;
 	public final int frameHeight = 500;
 	public final int frameWidth = 500;
-	public static float angleX = 0;
-	public static float angleY = 0;
+	public static final Camara camara = new Camara();
 
 	public void InitDisplay(){
 
@@ -40,24 +39,27 @@ public class GLManager {
 			
 			GL11.glEnable(GL11.GL_DEPTH_BUFFER_BIT);
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
-			
-			GL11.glTranslatef(0, 0, -5);
-			addAngleX(-30);
-			addAngleY(-45);
+			GL11.glLoadIdentity();
+			camara.move(0.25f, 1.5f, -7f);
+			camara.addAngleX(-30);
+			camara.addAngleY(-45);
 			
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-	public static void addAngleX(float angle){
-		angleX += angle;
-		glRotatef(angle, 1, 0, 0);
+
+	public void preRender() {
+		GL11.glPushMatrix();
+		glTranslatef(camara.cameraX, camara.cameraY, camara.cameraZ);
+		glRotatef(camara.angleX, 1, 0, 0);
+		glRotatef(camara.angleY, 0, 1, 0);
+		glRotatef(camara.angleZ, 0, 0, 1);
+	}
+
+	public void posRender() {
+		GL11.glPopMatrix();
 	}
 	
-	public static void addAngleY(float angle){
-		angleY += angle;
-		glRotatef(angle, 0, 1, 0);
-	}
 }

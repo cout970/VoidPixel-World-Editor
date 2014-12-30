@@ -1,20 +1,6 @@
 package com.cout970.worldeditor;
 
-import static org.lwjgl.input.Keyboard.KEY_A;
-import static org.lwjgl.input.Keyboard.KEY_C;
-import static org.lwjgl.input.Keyboard.KEY_D;
-import static org.lwjgl.input.Keyboard.KEY_E;
-import static org.lwjgl.input.Keyboard.KEY_G;
-import static org.lwjgl.input.Keyboard.KEY_Q;
-import static org.lwjgl.input.Keyboard.KEY_S;
-import static org.lwjgl.input.Keyboard.KEY_V;
-import static org.lwjgl.input.Keyboard.KEY_W;
-import static org.lwjgl.input.Keyboard.KEY_X;
-import static org.lwjgl.input.Keyboard.KEY_Z;
-import static org.lwjgl.input.Keyboard.create;
-import static org.lwjgl.input.Keyboard.isCreated;
-import static org.lwjgl.input.Keyboard.isKeyDown;
-import static org.lwjgl.opengl.GL11.glTranslatef;
+import static org.lwjgl.input.Keyboard.*;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
@@ -37,39 +23,42 @@ public class KeyLisener {
 			}
 		}else{
 			if(isKeyDown(KEY_A)){
-				glTranslatef(speed,0,0);
+				GLManager.camara.move(speed,0,0);
 			}
 			if(isKeyDown(KEY_D)){
-				glTranslatef(-speed,0,0);
+				GLManager.camara.move(-speed,0,0);
 			}
 			if(isKeyDown(KEY_W)){
-				glTranslatef(0,0,speed);
+				GLManager.camara.move(0,speed,0);
 			}
 			if(isKeyDown(KEY_S)){
-				glTranslatef(0,0,-speed);
+				GLManager.camara.move(0,-speed,0);
 			}
 			if(isKeyDown(KEY_Q)){
-				glTranslatef(0,speed,0);
+				GLManager.camara.move(0,0,speed);
 			}
 			if(isKeyDown(KEY_E)){
-				glTranslatef(0,-speed,0);
+				GLManager.camara.move(0,0,-speed);
 			}
 			if(isKeyDown(KEY_Z)){
-				GLManager.addAngleX(speed*10);
+				GLManager.camara.addAngleX(speed*10);
 			}
 			if(isKeyDown(KEY_X)){
-				GLManager.addAngleX(-speed*10);
+				GLManager.camara.addAngleX(-speed*10);
 			}
 			
 			if(isKeyDown(KEY_C)){
-				GLManager.addAngleY(speed*10);
+				GLManager.camara.addAngleY(speed*10);
 			}
 			if(isKeyDown(KEY_V)){
-				GLManager.addAngleY(-speed*10);
+				GLManager.camara.addAngleY(-speed*10);
 			}
 			
 			if(isKeyDown(KEY_G)){
 				JsonLoader.saveChunks();
+			}
+			if(isKeyDown(KEY_T)){
+				JsonLoader.loadChunks();
 			}
 		}
 		if(!Mouse.isCreated()){

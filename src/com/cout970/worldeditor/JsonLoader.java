@@ -18,7 +18,8 @@ public class JsonLoader {
 	public static List<File> chunks = new ArrayList<File>();
 
 	public static void loadChunks(){
-
+		ChunkStorage.storage.clear();
+		RenderManager.reloadChunks();
 		try {
 			File dir = new File(chunksFolder);
 			for(File fil : dir.listFiles()){

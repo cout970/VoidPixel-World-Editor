@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 
 
 public class Inicio {
+	//https://www.dropbox.com/sh/ecluszwj7dsn075/AADNYk7Z-SXFhAuslKP4x1tTa?dl=0
 	//http://pastebin.com/bWwP3NXV
 	private static boolean working = true;
 
@@ -18,7 +19,9 @@ public class Inicio {
 	private static void WorkLoop() {
 		while(working){
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-			RenderManager.renderBlocks();
+			GLManager.instance.preRender();
+			RenderManager.renderWorld();
+			GLManager.instance.posRender();
 			KeyLisener.ListenKeyboard();
 			Display.update();
 			Display.sync(60);

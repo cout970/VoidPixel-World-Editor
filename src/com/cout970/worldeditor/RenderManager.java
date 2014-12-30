@@ -1,13 +1,9 @@
 package com.cout970.worldeditor;
 
-import static org.lwjgl.opengl.GL11.glColor4f;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glPopMatrix;
-import static org.lwjgl.opengl.GL11.glPushMatrix;
-import static org.lwjgl.opengl.GL11.glScalef;
-import static org.lwjgl.opengl.GL11.glTranslatef;
+import static org.lwjgl.opengl.GL11.*;
 
 import com.cout970.worldeditor.util.Side;
+import com.cout970.worldeditor.util.Vector3;
 import com.cout970.worldeditor.world.Block;
 import com.cout970.worldeditor.world.Chunk;
 import com.cout970.worldeditor.world.ChunkStorage;
@@ -17,7 +13,8 @@ public class RenderManager {
 	public static float scale = 0.1f;
 	public static boolean isFirst = true;
 	
-	public static void renderBlocks() {
+	
+	public static void renderWorld() {
 		
 		if(isFirst){
 			isFirst = false;
@@ -34,8 +31,21 @@ public class RenderManager {
 		for(Chunk c : ChunkStorage.storage){
 			renderChunk(c);
 		}
+		drawCuadricula();
+		GLManager.camara.renderCamara();
 	}
 	
+	private static void drawCuadricula() {
+		glPushMatrix();
+		glColor4f(1, 1, 1, 1);
+		RenderUtil.bindTexture(TextureManager.water);
+		glLineWidth(1000);
+		RenderUtil.line(new Vector3(0, 0, 0), new Vector3(10, 0, 0));
+		RenderUtil.line(new Vector3(0, 0, 0), new Vector3(0, 10, 0));
+		RenderUtil.line(new Vector3(0, 0, 0), new Vector3(0, 0, 10));
+		glPopMatrix();
+	}
+
 	private static boolean shouldRender(Block block) {
 		if(block.material.material.equalsIgnoreCase("AIR"))return false;
 		for(Side s: Side.values()){
@@ -56,7 +66,7 @@ public class RenderManager {
 	public static void renderChunk(Chunk c) {
 		glPushMatrix();
 		glColor4f(1, 1, 1, 1);
-		glTranslatef(c.X*scale*8 - 0.5f, 1, c.Z*scale*8);
+//		glTranslatef(c.X*scale*4, 1, c.Z*scale);
 		glScalef(scale, scale, scale);
 		for (int k = 0; k < 32; k++) {
 			for (int i = 0; i < 8; i++) {
@@ -78,6 +88,10 @@ public class RenderManager {
 		glEnd();
 		glPopMatrix();
 
+	}
+
+	public static void reloadChunks() {
+		isFirst = true;
 	}
 
 }
