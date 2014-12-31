@@ -40,7 +40,7 @@ public class GLManager {
 			GL11.glEnable(GL11.GL_DEPTH_BUFFER_BIT);
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
 			GL11.glLoadIdentity();
-			camara.move(0.25f, 1.5f, -7f);
+			camara.move(3.25f, 10f, -45f);
 			camara.addAngleX(-30);
 			camara.addAngleY(-45);
 			
@@ -52,6 +52,7 @@ public class GLManager {
 
 	public void preRender() {
 		GL11.glPushMatrix();
+		System.out.println(camara);
 		glTranslatef(camara.cameraX, camara.cameraY, camara.cameraZ);
 		glRotatef(camara.angleX, 1, 0, 0);
 		glRotatef(camara.angleY, 0, 1, 0);

@@ -1,9 +1,9 @@
 package com.cout970.worldeditor;
 
-import java.util.Vector;
 
 import org.lwjgl.util.vector.Vector3f;
 
+import com.cout970.worldeditor.util.Side;
 import com.cout970.worldeditor.util.Vector3;
 import com.cout970.worldeditor.world.Block;
 
@@ -22,12 +22,22 @@ public class RayTracer {
 		Vector3 or = new Vector3(origin);
     	Vector3 d = new Vector3(direction);
     	Vector3 dif = d.copy().add(or.copy().negate());
-    	double mod = dif.module()*10;
+    	double mod = dif.module()*50;
     	
     	for(int i=0;i<mod;i++){
     		Vector3 f = or.copy().add(dif.copy().multiply(i/mod));
-    		Block g = WorldEditor.getBlock((int)Math.round(-f.x),(int)Math.round(-f.y),(int)Math.round(f.z));
+    		int x = (int)Math.round(-f.x);
+    		int y = (int)Math.round(-f.y);
+    		int z = (int)Math.round(f.z);
+    		Block g = WorldEditor.getBlock(x,y,z);
     		if(g != null && !g.material.material.equalsIgnoreCase("AIR")){
+    			for(Side s : Side.values()){
+    				Block t = WorldEditor.getBlock(z+s.OffsetX,y+s.OffsetY,z+s.OffsetZ);
+    				if(t != null && !t.material.material.equalsIgnoreCase("AIR") && check(t,f)){
+    					b = t;
+    					break;
+    				}
+    			}
     			if(check(g,f)){
     				b = g;
     				break;
@@ -36,7 +46,7 @@ public class RayTracer {
     	}
 
     	if(b != null){
-    		b.material.material = "SELECT";
+    		b.material.material = "BUG";
     	}
 	}
 
