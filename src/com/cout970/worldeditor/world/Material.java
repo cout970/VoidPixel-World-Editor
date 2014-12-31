@@ -1,9 +1,12 @@
 package com.cout970.worldeditor.world;
 
+import com.google.gson.annotations.Expose;
+
 public class Material {
 
-	
+	@Expose
 	public String material;
+	@Expose
 	public float[] colorMaterial;
 	
 	public Material(String string, float d, float e, float f) {

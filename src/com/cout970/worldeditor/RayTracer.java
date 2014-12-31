@@ -21,12 +21,12 @@ public class RayTracer {
 		Vector3 or = new Vector3(origin);
     	Vector3 d = new Vector3(direction);
     	Vector3 dif = d.copy().add(or.copy().negate());
-    	double mod = dif.module()*50;
+    	double mod = dif.module()*10;
     	
     	for(int i=0;i<mod;i++){
     		Vector3 f = or.copy().add(dif.copy().multiply(i/mod));
-    		int x = (int)Math.round(-f.x);
-    		int y = (int)Math.round(-f.y);
+    		int x = (int)Math.round(f.x);
+    		int y = (int)Math.round(f.y);
     		int z = (int)Math.round(f.z);
     		Block g = WorldEditor.getBlock(x,y,z);
     		if(g != null && !g.material.material.equalsIgnoreCase("AIR")){

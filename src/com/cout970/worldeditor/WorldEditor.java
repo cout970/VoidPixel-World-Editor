@@ -1,5 +1,6 @@
 package com.cout970.worldeditor;
 
+import com.cout970.worldeditor.util.Side;
 import com.cout970.worldeditor.world.Block;
 import com.cout970.worldeditor.world.Chunk;
 import com.cout970.worldeditor.world.ChunkStorage;
@@ -12,13 +13,15 @@ public class WorldEditor {
 	private static Material selectedMaterial = new Material("STONE", 1, 1, 1);
 	
 	public static Block getBlock(int x, int y, int z){
-		if(x < 0 || y < 0 || y >= 32|| z < 0)return null;
+		if(y < 0 ||y >= 32)return null;
+		int chunkX = x>=0 ? x/8 : x/8-1;
+		int chunkZ = z>=0 ? z/8 : z/8-1;
+		int xx = x%8>=0 ? x%8 : 8+x%8;
+		int zz = z%8>=0 ? z%8 : 8+z%8;
 		
-		int chunkX = x/8;
-		int chunkZ = z/8;
 		for(Chunk c : ChunkStorage.storage){
 			if(c.X == chunkX && c.Z == chunkZ){
-				return c.Blocks[y][z%8][x%8];
+				return c.Blocks[y][zz][xx];
 			}
 		}
 		return null;
@@ -36,10 +39,13 @@ public class WorldEditor {
 			estado = State.SELECT;
 			Block old = selectBlock;
 			selectBlock = b;
-			b.setRenderizable(true);
+			for(Side s : Side.values())
+			b.setRenderizable(s,true);
 			if(old != null){
-				old.setRenderizable(RenderManager.shouldRender(old));
+				for(Side s : Side.values())
+				old.setRenderizable(s,RenderManager.shouldRender(s,old));
 			}
+			RenderManager.reloadChunks();
 		}
 	}
 

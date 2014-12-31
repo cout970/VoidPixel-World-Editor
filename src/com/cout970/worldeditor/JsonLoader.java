@@ -11,6 +11,7 @@ import java.util.List;
 import com.cout970.worldeditor.world.Chunk;
 import com.cout970.worldeditor.world.ChunkStorage;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class JsonLoader { 
 
@@ -25,9 +26,18 @@ public class JsonLoader {
 			for(File fil : dir.listFiles()){
 				if(fil.getName().contains("chunk_")){
 					FileReader r = new FileReader(fil);
-					Gson g = new Gson();
+					Gson g = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
 					Chunk c = g.fromJson(r, Chunk.class);
+					for(int y = 0; y < c.Blocks.length; y++){
+						for(int z = 0; z < c.Blocks[0].length; z++){
+							for(int x = 0; x < c.Blocks[0][0].length; x++){
+								c.Blocks[y][z][x].location.X = x+c.X*c.Blocks[0][0].length;
+								c.Blocks[y][z][x].location.Y = y;
+								c.Blocks[y][z][x].location.Z = z+c.Z*c.Blocks[0].length;
+							}	
+						}
+					}
 					ChunkStorage.storage.add(c);
 					r.close();
 				}
@@ -44,7 +54,7 @@ public class JsonLoader {
 			for(Chunk c : ChunkStorage.storage){
 				File dir = new File(chunksFolder+getChunkName(c));
 				FileWriter r = new FileWriter(dir);
-				Gson g = new Gson();
+				Gson g = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 				String json = g.toJson(c);
 				r.write(json);
 				r.close();

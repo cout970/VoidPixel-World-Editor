@@ -67,6 +67,7 @@ public class KeyLisener {
 				JsonLoader.loadChunks();
 			}
 			if(WorldEditor.estado == State.SELECT){
+				
 				if(isKeyDown(KEY_I)){
 					WorldEditor.getSelectedBlock().material.material = WorldEditor.getSelectedMaterial().material;	
 				}
@@ -78,8 +79,8 @@ public class KeyLisener {
 				}
 				if(isKeyDown(KEY_ADD) && cooldown == 0){
 					cooldown = 10;
-					Block b = WorldEditor.getBlock(-(int)WorldEditor.getSelectedBlock().getX(),
-							-((int)WorldEditor.getSelectedBlock().getY()-1),
+					Block b = WorldEditor.getBlock((int)WorldEditor.getSelectedBlock().getX(),
+							((int)WorldEditor.getSelectedBlock().getY()-1),
 							(int)WorldEditor.getSelectedBlock().getZ());
 					if(b != null){
 						WorldEditor.selectBlock(b);
@@ -87,8 +88,8 @@ public class KeyLisener {
 				}
 				if(isKeyDown(KEY_SUBTRACT) && cooldown == 0){
 					cooldown = 10;
-					Block b = WorldEditor.getBlock(-(int)WorldEditor.getSelectedBlock().getX(),
-							-((int)WorldEditor.getSelectedBlock().getY()+1),
+					Block b = WorldEditor.getBlock((int)WorldEditor.getSelectedBlock().getX(),
+							((int)WorldEditor.getSelectedBlock().getY()+1),
 							(int)WorldEditor.getSelectedBlock().getZ());
 					if(b != null){
 						WorldEditor.selectBlock(b);
@@ -96,8 +97,8 @@ public class KeyLisener {
 				}
 				if(isKeyDown(KEY_LEFT) && cooldown == 0){
 					cooldown = 10;
-					Block b = WorldEditor.getBlock(-(int)WorldEditor.getSelectedBlock().getX(),
-							-((int)WorldEditor.getSelectedBlock().getY()),
+					Block b = WorldEditor.getBlock((int)WorldEditor.getSelectedBlock().getX(),
+							((int)WorldEditor.getSelectedBlock().getY()),
 							(int)WorldEditor.getSelectedBlock().getZ()-1);
 					if(b != null){
 						WorldEditor.selectBlock(b);
@@ -105,8 +106,8 @@ public class KeyLisener {
 				}
 				if(isKeyDown(KEY_RIGHT) && cooldown == 0){
 					cooldown = 10;
-					Block b = WorldEditor.getBlock(-(int)WorldEditor.getSelectedBlock().getX(),
-							-((int)WorldEditor.getSelectedBlock().getY()),
+					Block b = WorldEditor.getBlock((int)WorldEditor.getSelectedBlock().getX(),
+							((int)WorldEditor.getSelectedBlock().getY()),
 							(int)WorldEditor.getSelectedBlock().getZ()+1);
 					if(b != null){
 						WorldEditor.selectBlock(b);
@@ -114,8 +115,8 @@ public class KeyLisener {
 				}
 				if(isKeyDown(KEY_UP) && cooldown == 0){
 					cooldown = 10;
-					Block b = WorldEditor.getBlock(-((int)WorldEditor.getSelectedBlock().getX()-1),
-							-((int)WorldEditor.getSelectedBlock().getY()),
+					Block b = WorldEditor.getBlock(((int)WorldEditor.getSelectedBlock().getX()-1),
+							((int)WorldEditor.getSelectedBlock().getY()),
 							(int)WorldEditor.getSelectedBlock().getZ());
 					if(b != null){
 						WorldEditor.selectBlock(b);
@@ -123,8 +124,8 @@ public class KeyLisener {
 				}
 				if(isKeyDown(KEY_DOWN) && cooldown == 0){
 					cooldown = 10;
-					Block b = WorldEditor.getBlock(-((int)WorldEditor.getSelectedBlock().getX()+1),
-							-((int)WorldEditor.getSelectedBlock().getY()),
+					Block b = WorldEditor.getBlock(((int)WorldEditor.getSelectedBlock().getX()+1),
+							((int)WorldEditor.getSelectedBlock().getY()),
 							(int)WorldEditor.getSelectedBlock().getZ());
 					if(b != null){
 						WorldEditor.selectBlock(b);
@@ -154,6 +155,8 @@ public class KeyLisener {
 				if(!isRightClick){
 					isRightClick = true;
 				}
+				GLManager.camara.addAngleX(Mouse.getDY()*0.1f);
+				GLManager.camara.addAngleY(Mouse.getDX()*0.1f);
 			}else{
 				isRightClick = false;
 			}

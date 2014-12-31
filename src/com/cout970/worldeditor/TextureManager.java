@@ -26,17 +26,17 @@ public class TextureManager {
 	public static Texture overlay;
 	
 	public static Texture getTexture(Material material) {
-		if(material.material.equalsIgnoreCase("GRASS"))return grass;
-		if(material.material.equalsIgnoreCase("WATER"))return water;
-		if(material.material.equalsIgnoreCase("STONE"))return stone;
-		if(material.material.equalsIgnoreCase("HARD_STONE"))return hard_stone;
-		if(material.material.equalsIgnoreCase("WOOD"))return wood;
-		if(material.material.equalsIgnoreCase("AIR"))return air;
-		if(material.material.equalsIgnoreCase("SAND"))return sand;
-		if(material.material.equalsIgnoreCase("SELECT"))return select;
-		if(material.material.equalsIgnoreCase("BUG"))return bug;
-		System.out.println("Error missing material: "+material.material);
-		return air;
+//		if(material.material.equalsIgnoreCase("GRASS"))return grass;
+//		if(material.material.equalsIgnoreCase("WATER"))return water;
+//		if(material.material.equalsIgnoreCase("STONE"))return stone;
+//		if(material.material.equalsIgnoreCase("HARD_STONE"))return hard_stone;
+//		if(material.material.equalsIgnoreCase("WOOD"))return wood;
+//		if(material.material.equalsIgnoreCase("AIR"))return air;
+//		if(material.material.equalsIgnoreCase("SAND"))return sand;
+//		if(material.material.equalsIgnoreCase("SELECT"))return select;
+//		if(material.material.equalsIgnoreCase("BUG"))return bug;
+//		System.out.println("Error missing material: "+material.material);
+		return overlay;
 	}
 
 	static void loadTextures() {

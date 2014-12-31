@@ -4,84 +4,94 @@ import static org.lwjgl.opengl.GL11.*;
 
 import org.newdawn.slick.opengl.Texture;
 
+import com.cout970.worldeditor.util.Side;
 import com.cout970.worldeditor.util.Vector3;
+import com.cout970.worldeditor.world.Block;
 
 public class RenderUtil {
 
-	public static void block() {
+	public static void block(Block b) {
 		//+y
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex3f(0,0,0);
-		glTexCoord2f(1, 0);
-		glVertex3f(0,0,1);
-		glTexCoord2f(1, 1);
-		glVertex3f(1,0,1);
-		glTexCoord2f(0, 1);
-		glVertex3f(1,0,0);
-		glEnd();
-		
+		if(b.shouldRenderSide(Side.DOWN)){
+			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
+			glVertex3f(0,0,0);
+			glTexCoord2f(1, 0);
+			glVertex3f(0,0,1);
+			glTexCoord2f(1, 1);
+			glVertex3f(1,0,1);
+			glTexCoord2f(0, 1);
+			glVertex3f(1,0,0);
+			glEnd();
+		}
+
 		//-y
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex3f(0,1,0);
-		glTexCoord2f(1, 0);
-		glVertex3f(0,1,1);
-		glTexCoord2f(1, 1);
-		glVertex3f(1,1,1);
-		glTexCoord2f(0, 1);
-		glVertex3f(1,1,0);
-		glEnd();
-		
+		if(b.shouldRenderSide(Side.UP)){
+			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
+			glVertex3f(0,1,0);
+			glTexCoord2f(1, 0);
+			glVertex3f(0,1,1);
+			glTexCoord2f(1, 1);
+			glVertex3f(1,1,1);
+			glTexCoord2f(0, 1);
+			glVertex3f(1,1,0);
+			glEnd();
+		}
 		//+z
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex3f(0,0,0);
-		glTexCoord2f(1, 0);
-		glVertex3f(0,1,0);
-		glTexCoord2f(1, 1);
-		glVertex3f(1,1,0);
-		glTexCoord2f(0, 1);
-		glVertex3f(1,0,0);
-		glEnd();
-		
+		if(b.shouldRenderSide(Side.WEST)){
+			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
+			glVertex3f(0,0,0);
+			glTexCoord2f(1, 0);
+			glVertex3f(0,1,0);
+			glTexCoord2f(1, 1);
+			glVertex3f(1,1,0);
+			glTexCoord2f(0, 1);
+			glVertex3f(1,0,0);
+			glEnd();
+		}
 		//-z
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex3f(0,0,1);
-		glTexCoord2f(1, 0);
-		glVertex3f(1,0,1);
-		glTexCoord2f(1, 1);
-		glVertex3f(1,1,1);
-		glTexCoord2f(0, 1);
-		glVertex3f(0,1,1);
-		glEnd();
-		
+		if(b.shouldRenderSide(Side.EAST)){
+			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
+			glVertex3f(0,0,1);
+			glTexCoord2f(1, 0);
+			glVertex3f(1,0,1);
+			glTexCoord2f(1, 1);
+			glVertex3f(1,1,1);
+			glTexCoord2f(0, 1);
+			glVertex3f(0,1,1);
+			glEnd();
+		}
 		//+x
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex3f(0,0,0);
-		glTexCoord2f(1, 0);
-		glVertex3f(0,0,1);
-		glTexCoord2f(1, 1);
-		glVertex3f(0,1,1);
-		glTexCoord2f(0, 1);
-		glVertex3f(0,1,0);
-		glEnd();
-		
+		if(b.shouldRenderSide(Side.NORTH)){
+			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
+			glVertex3f(0,0,0);
+			glTexCoord2f(1, 0);
+			glVertex3f(0,0,1);
+			glTexCoord2f(1, 1);
+			glVertex3f(0,1,1);
+			glTexCoord2f(0, 1);
+			glVertex3f(0,1,0);
+			glEnd();
+		}
 		//-x
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex3f(1,0,0);
-		glTexCoord2f(1, 0);
-		glVertex3f(1,0,1);
-		glTexCoord2f(1, 1);
-		glVertex3f(1,1,1);
-		glTexCoord2f(0, 1);
-		glVertex3f(1,1,0);
-		glEnd();
+		if(b.shouldRenderSide(Side.SOUTH)){
+			glBegin(GL_QUADS);
+			glTexCoord2f(0, 0);
+			glVertex3f(1,0,0);
+			glTexCoord2f(1, 0);
+			glVertex3f(1,0,1);
+			glTexCoord2f(1, 1);
+			glVertex3f(1,1,1);
+			glTexCoord2f(0, 1);
+			glVertex3f(1,1,0);
+			glEnd();
+		}
 	}
-	
+
 	public static void line(Vector3 a, Vector3 b){
 		glBegin(GL_LINES);
 		glVertex3d(a.x, a.y, a.z);

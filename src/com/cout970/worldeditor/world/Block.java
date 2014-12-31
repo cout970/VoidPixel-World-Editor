@@ -1,29 +1,31 @@
 package com.cout970.worldeditor.world;
 
+import com.cout970.worldeditor.util.Side;
+import com.google.gson.annotations.Expose;
+
 
 public class Block {
 
-	public String namaBlock;
-	public double X,Y,Z;
-	public boolean load;
+	@Expose
 	public Material material;
+	@Expose
 	public boolean voidness;
-	public boolean prevClickRight;
-	public boolean prevClickLeft;
-	public Location location;
-	public Color colors;
-	private boolean shouldRender = false;
+	@Expose
+	public Location location = new Location();
+	
+	public boolean faceN;
+	public boolean faceS;
+	public boolean faceE;
+	public boolean faceW;
+	public boolean faceU;
+	public boolean faceD;
 	
 	public Block(){
 
 	}
 
-	public Block(Material m,double x,double y, double z){
+	public Block(Material m){
 		material = m;
-		X = x;
-		Y = y;
-		Z = z;
-		colors = new Color();
 	}
 
 	public double getX(){
@@ -38,12 +40,23 @@ public class Block {
 		return location.Z;
 	}	
 	
-	public boolean shouldRender(){
-		return shouldRender;
+	public boolean shouldRenderSide(Side s){
+		if(s == Side.UP)return faceU;
+		if(s == Side.DOWN)return faceD;
+		if(s == Side.NORTH)return faceN;
+		if(s == Side.SOUTH)return faceS;
+		if(s == Side.EAST)return faceE;
+		if(s == Side.WEST)return faceW;
+		return false;
 	}
 	
-	public void setRenderizable(boolean ren){
-		shouldRender = ren;
+	public void setRenderizable(Side s,boolean ren){
+		if(s == Side.UP) faceU = ren;
+		if(s == Side.DOWN) faceD = ren;
+		if(s == Side.NORTH) faceN = ren;
+		if(s == Side.SOUTH) faceS = ren;
+		if(s == Side.EAST) faceE = ren;
+		if(s == Side.WEST) faceW = ren;
 	}
 	
 	public String toString(){

@@ -40,9 +40,9 @@ public class GLManager {
 			GL11.glEnable(GL11.GL_DEPTH_BUFFER_BIT);
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
 			GL11.glLoadIdentity();
-			camara.move(3.25f, 10f, -45f);
-			camara.addAngleX(-30);
-			camara.addAngleY(-45);
+			camara.move(5.25f, 8f, -60f);
+			camara.addAngleX(-215);
+			camara.addAngleY(-140);
 			
 		} catch (LWJGLException e) {
 			e.printStackTrace();
