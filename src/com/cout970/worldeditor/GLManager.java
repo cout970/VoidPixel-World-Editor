@@ -52,7 +52,6 @@ public class GLManager {
 
 	public void preRender() {
 		GL11.glPushMatrix();
-		System.out.println(camara);
 		glTranslatef(camara.cameraX, camara.cameraY, camara.cameraZ);
 		glRotatef(camara.angleX, 1, 0, 0);
 		glRotatef(camara.angleY, 0, 1, 0);

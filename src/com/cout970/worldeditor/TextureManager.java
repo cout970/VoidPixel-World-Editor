@@ -23,6 +23,7 @@ public class TextureManager {
 	public static Texture hard_stone;
 	public static Texture sand;
 	public static Texture bug;
+	public static Texture overlay;
 	
 	public static Texture getTexture(Material material) {
 		if(material.material.equalsIgnoreCase("GRASS"))return grass;
@@ -34,7 +35,7 @@ public class TextureManager {
 		if(material.material.equalsIgnoreCase("SAND"))return sand;
 		if(material.material.equalsIgnoreCase("SELECT"))return select;
 		if(material.material.equalsIgnoreCase("BUG"))return bug;
-		System.out.println(material.material);
+		System.out.println("Error missing material: "+material.material);
 		return air;
 	}
 
@@ -49,6 +50,7 @@ public class TextureManager {
 		hard_stone = RegisterTexture("hard_stone");
 		sand = RegisterTexture("sand");
 		bug = RegisterTexture("bug");
+		overlay = RegisterTexture("gui");
 	}
 	
 	public static Texture RegisterTexture(String name){

@@ -3,6 +3,7 @@ package com.cout970.worldeditor;
 
 import org.lwjgl.util.vector.Vector3f;
 
+import com.cout970.worldeditor.WorldEditor.State;
 import com.cout970.worldeditor.util.Side;
 import com.cout970.worldeditor.util.Vector3;
 import com.cout970.worldeditor.world.Block;
@@ -31,13 +32,6 @@ public class RayTracer {
     		int z = (int)Math.round(f.z);
     		Block g = WorldEditor.getBlock(x,y,z);
     		if(g != null && !g.material.material.equalsIgnoreCase("AIR")){
-    			for(Side s : Side.values()){
-    				Block t = WorldEditor.getBlock(z+s.OffsetX,y+s.OffsetY,z+s.OffsetZ);
-    				if(t != null && !t.material.material.equalsIgnoreCase("AIR") && check(t,f)){
-    					b = t;
-    					break;
-    				}
-    			}
     			if(check(g,f)){
     				b = g;
     				break;
@@ -46,14 +40,18 @@ public class RayTracer {
     	}
 
     	if(b != null){
-    		b.material.material = "BUG";
+    		WorldEditor.selectBlock = b;
+    		WorldEditor.estado = State.SELECT;
+    	}else{
+    		WorldEditor.selectBlock = null;
+    		WorldEditor.estado = State.SELECT;
     	}
 	}
 
 	private static boolean check(Block g, Vector3 f) {
-		if(g.getX() > f.x || g.getX()+1 < f.x)return false;
-		if(g.getY() > f.y || g.getY()+1 < f.y)return false;
-		if(g.getZ() > f.z || g.getZ()+1 < f.z)return false;
+		if(g.getX() >= f.x || g.getX()+1 <= f.x)return false;
+		if(g.getY() >= f.y || g.getY()+1 <= f.y)return false;
+		if(g.getZ() >= f.z || g.getZ()+1 <= f.z)return false;
 		return true;
 	}
 }

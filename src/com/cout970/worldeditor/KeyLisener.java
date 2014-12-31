@@ -5,6 +5,9 @@ import static org.lwjgl.input.Keyboard.*;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
 
+import com.cout970.worldeditor.WorldEditor.State;
+import com.cout970.worldeditor.world.Block;
+
 public class KeyLisener {
 
 	public static int MouseX;
@@ -59,6 +62,16 @@ public class KeyLisener {
 			}
 			if(isKeyDown(KEY_T)){
 				JsonLoader.loadChunks();
+			}
+			if(WorldEditor.estado == State.SELECT){
+				if(isKeyDown(KEY_I)){
+					WorldEditor.selectBlock.material.material = "STONE";	
+				}
+				if(isKeyDown(KEY_O)){
+					Block b = WorldEditor.getBlock((int)WorldEditor.selectBlock.getX(), (int)WorldEditor.selectBlock.getY()+1, (int)WorldEditor.selectBlock.getZ());
+					if(b != null)
+						WorldEditor.selectBlock = b;	
+				}
 			}
 		}
 		if(!Mouse.isCreated()){
