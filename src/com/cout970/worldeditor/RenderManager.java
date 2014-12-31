@@ -46,9 +46,9 @@ public class RenderManager {
 //		}
 	}
 
-	private static boolean shouldRender(Block block) {
+	public static boolean shouldRender(Block block) {
+		if(WorldEditor.getSelectedBlock() == block)return true;
 		if(block.material.material.equalsIgnoreCase("AIR"))return false;
-		if(WorldEditor.selectBlock == block)return true;
 		for(Side s: Side.values()){
 			int x = (int)block.getX()+s.OffsetX;
 			int y = (int)-block.getY()+s.OffsetY;
@@ -81,7 +81,7 @@ public class RenderManager {
 		if(!b.shouldRender())return;
 		glPushMatrix();
 		glTranslatef((float)b.getX(), (float)b.getY(),(float)b.getZ());
-		if(WorldEditor.selectBlock == b)
+		if(WorldEditor.getSelectedBlock() == b)
 			RenderUtil.bindTexture(TextureManager.select);
 		else
 			RenderUtil.bindTexture(TextureManager.getTexture(b.material));

@@ -45,4 +45,8 @@ public class Block {
 	public void setRenderizable(boolean ren){
 		shouldRender = ren;
 	}
+	
+	public String toString(){
+		return "x:"+getX()+" y:"+getY()+" z:"+getZ()+" Material: "+material;
+	}
 }

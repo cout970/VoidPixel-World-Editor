@@ -11,8 +11,8 @@ import org.lwjgl.util.glu.GLU;
 public class GLManager {
 
 	public static GLManager instance;
-	public final int frameHeight = 500;
-	public final int frameWidth = 500;
+	public final int frameHeight = 800;
+	public final int frameWidth = 1000;
 	public static final Camara camara = new Camara();
 
 	public void InitDisplay(){
@@ -33,7 +33,7 @@ public class GLManager {
 
 			GL11.glMatrixMode(GL11.GL_PROJECTION);
 			GL11.glLoadIdentity();
-			GLU.gluPerspective(-30f, frameWidth/frameHeight, 0.1f, 100);
+			GLU.gluPerspective(-30f, frameWidth/frameHeight, 0.1f, 1000);
 			
 			GL11.glMatrixMode(GL11.GL_MODELVIEW);
 			

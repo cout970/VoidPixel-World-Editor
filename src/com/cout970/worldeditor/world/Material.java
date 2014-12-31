@@ -13,4 +13,8 @@ public class Material {
 		colorMaterial[1] = e;
 		colorMaterial[2] = f;
 	}
+	
+	public String toString(){
+		return "["+material+" red:"+colorMaterial[0]+" green:"+colorMaterial[1]+" blue:"+colorMaterial[2]+"]";
+	}
 }
