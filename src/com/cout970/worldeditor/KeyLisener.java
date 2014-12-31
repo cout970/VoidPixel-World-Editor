@@ -11,7 +11,7 @@ public class KeyLisener {
 	public static int MouseY;
 	public static boolean isLeftClick = false;
 	public static boolean isRightClick = false;
-	private static float speed = 0.025f;
+	private static float speed = 0.25f;
 	
 
 	public static void ListenKeyboard() {
@@ -41,17 +41,17 @@ public class KeyLisener {
 				GLManager.camara.move(0,0,-speed);
 			}
 			if(isKeyDown(KEY_Z)){
-				GLManager.camara.addAngleX(speed*10);
+				GLManager.camara.addAngleX(speed);
 			}
 			if(isKeyDown(KEY_X)){
-				GLManager.camara.addAngleX(-speed*10);
+				GLManager.camara.addAngleX(-speed);
 			}
 			
 			if(isKeyDown(KEY_C)){
-				GLManager.camara.addAngleY(speed*10);
+				GLManager.camara.addAngleY(speed);
 			}
 			if(isKeyDown(KEY_V)){
-				GLManager.camara.addAngleY(-speed*10);
+				GLManager.camara.addAngleY(-speed);
 			}
 			
 			if(isKeyDown(KEY_G)){
@@ -74,10 +74,7 @@ public class KeyLisener {
 			if(Mouse.isButtonDown(0)){
 				if(!isLeftClick){
 					isLeftClick = true;
-//					Block b = RayTracer.rayTrace();
-//					if(b != null){
-//						b.material.material = "HARD_STONE";
-//					}
+					RayTracer.rayTracer();
 				}
 			}else{
 				isLeftClick = false;

@@ -1,6 +1,11 @@
 package com.cout970.worldeditor;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glColor4f;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glLineWidth;
+import static org.lwjgl.opengl.GL11.glPopMatrix;
+import static org.lwjgl.opengl.GL11.glPushMatrix;
+import static org.lwjgl.opengl.GL11.glTranslatef;
 
 import com.cout970.worldeditor.util.Side;
 import com.cout970.worldeditor.util.Vector3;
@@ -28,10 +33,10 @@ public class RenderManager {
 				}
 			}
 		}
-//		for(Chunk c : ChunkStorage.storage){
-//			renderChunk(c);
-//		}
-		drawCuadricula();
+		for(Chunk c : ChunkStorage.storage){
+			renderChunk(c);
+		}
+//		drawCuadricula();
 		GLManager.camara.renderCamara();
 	}
 	
@@ -67,7 +72,7 @@ public class RenderManager {
 		glPushMatrix();
 		glColor4f(1, 1, 1, 1);
 //		glTranslatef(c.X*scale*4, 1, c.Z*scale);
-		glScalef(scale, scale, scale);
+//		glScalef(scale, scale, scale);
 		for (int k = 0; k < 32; k++) {
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {

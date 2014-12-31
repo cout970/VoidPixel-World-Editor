@@ -1,5 +1,7 @@
 package com.cout970.worldeditor.util;
 
+import org.lwjgl.util.vector.Vector3f;
+
 public class Vector3 {
 
 	public double x,y,z;
@@ -16,7 +18,13 @@ public class Vector3 {
 		z = m[2];
 	}
 
-	public void rotateX(double d) {
+	public Vector3(Vector3f v) {
+		x = v.x;
+		y = v.y;
+		z = v.z;
+	}
+
+	public Vector3 rotateX(double d) {
 		double[][] rot = {{1,0,0},{0,Math.cos(d),-Math.sin(d)},{0,Math.sin(d),Math.cos(d)}};
 		double a = tensorial(this, new Vector3(rot[0]));
 		double b = tensorial(this, new Vector3(rot[1]));
@@ -26,9 +34,10 @@ public class Vector3 {
 		x = e.x;
 		y = e.y;
 		z = e.z;
+		return this;
 	}
 	
-	public void rotateY(double d) {
+	public Vector3 rotateY(double d) {
 		double[][] rot = {{Math.cos(d),0,Math.sin(d)},{0,1,0},{-Math.sin(d),0,Math.cos(d)}};
 		double a = tensorial(this, new Vector3(rot[0]));
 		double b = tensorial(this, new Vector3(rot[1]));
@@ -38,9 +47,10 @@ public class Vector3 {
 		x = e.x;
 		y = e.y;
 		z = e.z;
+		return this;
 	}
 	
-	public void rotateZ(double d) {
+	public Vector3 rotateZ(double d) {
 		double[][] rot = {{Math.cos(d),-Math.sin(d),0},{Math.sin(d),Math.cos(d),0},{0,0,1}};
 		double a = tensorial(this, new Vector3(rot[0]));
 		double b = tensorial(this, new Vector3(rot[1]));
@@ -50,18 +60,21 @@ public class Vector3 {
 		x = e.x;
 		y = e.y;
 		z = e.z;
+		return this;
 	}
 	
-	public void multiply(Vector3 a) {
+	public Vector3 multiply(Vector3 a) {
 		x += a.x;
 		y += a.y;
 		z += a.z;
+		return this;
 	}
 	
-	public void multiply(double a){
+	public Vector3 multiply(double a){
 		x *= a;
 		y *= a;
 		z *= a;
+		return this;
 	}
 
 	public Vector3 unitaryVector(){
@@ -82,19 +95,33 @@ public class Vector3 {
 		return a.x*b.x+a.y*b.y+a.z*b.z;
 	}
 
-	public void add(Vector3 a) {
+	public Vector3 add(Vector3 a) {
 		x += a.x;
 		y += a.y;
 		z += a.z;
+		return this;
 	}
 
-	public void negate() {
+	public Vector3 negate() {
 		x = -x;
 		y = -y;
 		z = -z;
+		return this;
+	}
+	
+	public Vector3 negateY() {
+		y = -y;
+		return this;
 	}
 
 	public Vector3 copy() {
 		return new Vector3(x, y, z);
+	}
+
+	public Vector3 divide(double a) {
+		x /= a;
+		y /= a;
+		z /= a;
+		return this;
 	}
 }
