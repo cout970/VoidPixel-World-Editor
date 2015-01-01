@@ -1,6 +1,29 @@
 package com.cout970.worldeditor;
 
-import static org.lwjgl.input.Keyboard.*;
+import static org.lwjgl.input.Keyboard.KEY_A;
+import static org.lwjgl.input.Keyboard.KEY_ADD;
+import static org.lwjgl.input.Keyboard.KEY_C;
+import static org.lwjgl.input.Keyboard.KEY_D;
+import static org.lwjgl.input.Keyboard.KEY_DOWN;
+import static org.lwjgl.input.Keyboard.KEY_E;
+import static org.lwjgl.input.Keyboard.KEY_G;
+import static org.lwjgl.input.Keyboard.KEY_I;
+import static org.lwjgl.input.Keyboard.KEY_K;
+import static org.lwjgl.input.Keyboard.KEY_LEFT;
+import static org.lwjgl.input.Keyboard.KEY_O;
+import static org.lwjgl.input.Keyboard.KEY_Q;
+import static org.lwjgl.input.Keyboard.KEY_RIGHT;
+import static org.lwjgl.input.Keyboard.KEY_S;
+import static org.lwjgl.input.Keyboard.KEY_SUBTRACT;
+import static org.lwjgl.input.Keyboard.KEY_T;
+import static org.lwjgl.input.Keyboard.KEY_UP;
+import static org.lwjgl.input.Keyboard.KEY_V;
+import static org.lwjgl.input.Keyboard.KEY_W;
+import static org.lwjgl.input.Keyboard.KEY_X;
+import static org.lwjgl.input.Keyboard.KEY_Z;
+import static org.lwjgl.input.Keyboard.create;
+import static org.lwjgl.input.Keyboard.isCreated;
+import static org.lwjgl.input.Keyboard.isKeyDown;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
@@ -66,21 +89,22 @@ public class KeyLisener {
 			if(isKeyDown(KEY_T)){
 				JsonLoader.loadChunks();
 			}
+			
 			if(WorldEditor.estado == State.SELECT){
 				
 				if(isKeyDown(KEY_I)){
-					WorldEditor.getSelectedBlock().material.material = WorldEditor.getSelectedMaterial().material;	
+					WorldEditor.setMaterialForSelectedblock(WorldEditor.getSelectedMaterial());	
 				}
 				if(isKeyDown(KEY_K)){
 					WorldEditor.getSelectedBlock().material = new Material("AIR", 1, 1, 1);	
 				}
 				if(isKeyDown(KEY_O)){
-					WorldEditor.getSelectedMaterial().material = WorldEditor.getSelectedBlock().material.material;	
+					WorldEditor.setSelectedMaterial(new Material(WorldEditor.getSelectedBlock().material));	
 				}
 				if(isKeyDown(KEY_ADD) && cooldown == 0){
 					cooldown = 10;
 					Block b = WorldEditor.getBlock((int)WorldEditor.getSelectedBlock().getX(),
-							((int)WorldEditor.getSelectedBlock().getY()-1),
+							((int)WorldEditor.getSelectedBlock().getY()+1),
 							(int)WorldEditor.getSelectedBlock().getZ());
 					if(b != null){
 						WorldEditor.selectBlock(b);
@@ -89,7 +113,7 @@ public class KeyLisener {
 				if(isKeyDown(KEY_SUBTRACT) && cooldown == 0){
 					cooldown = 10;
 					Block b = WorldEditor.getBlock((int)WorldEditor.getSelectedBlock().getX(),
-							((int)WorldEditor.getSelectedBlock().getY()+1),
+							((int)WorldEditor.getSelectedBlock().getY()-1),
 							(int)WorldEditor.getSelectedBlock().getZ());
 					if(b != null){
 						WorldEditor.selectBlock(b);
@@ -115,7 +139,7 @@ public class KeyLisener {
 				}
 				if(isKeyDown(KEY_UP) && cooldown == 0){
 					cooldown = 10;
-					Block b = WorldEditor.getBlock(((int)WorldEditor.getSelectedBlock().getX()-1),
+					Block b = WorldEditor.getBlock(((int)WorldEditor.getSelectedBlock().getX()+1),
 							((int)WorldEditor.getSelectedBlock().getY()),
 							(int)WorldEditor.getSelectedBlock().getZ());
 					if(b != null){
@@ -124,7 +148,7 @@ public class KeyLisener {
 				}
 				if(isKeyDown(KEY_DOWN) && cooldown == 0){
 					cooldown = 10;
-					Block b = WorldEditor.getBlock(((int)WorldEditor.getSelectedBlock().getX()+1),
+					Block b = WorldEditor.getBlock(((int)WorldEditor.getSelectedBlock().getX()-1),
 							((int)WorldEditor.getSelectedBlock().getY()),
 							(int)WorldEditor.getSelectedBlock().getZ());
 					if(b != null){

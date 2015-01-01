@@ -41,8 +41,8 @@ public class GLManager {
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
 			GL11.glLoadIdentity();
 			camara.move(5.25f, 8f, -60f);
-			camara.addAngleX(-215);
-			camara.addAngleY(-140);
+			camara.addAngleX(180-30);
+			camara.addAngleY(180+45);
 			
 		} catch (LWJGLException e) {
 			e.printStackTrace();

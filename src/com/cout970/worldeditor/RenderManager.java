@@ -4,7 +4,6 @@ import static org.lwjgl.opengl.GL11.glColor3f;
 import static org.lwjgl.opengl.GL11.glColor4f;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glEndList;
-import static org.lwjgl.opengl.GL11.glLineWidth;
 import static org.lwjgl.opengl.GL11.glNewList;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
@@ -13,7 +12,6 @@ import static org.lwjgl.opengl.GL11.glTranslatef;
 import org.lwjgl.opengl.GL11;
 
 import com.cout970.worldeditor.util.Side;
-import com.cout970.worldeditor.util.Vector3;
 import com.cout970.worldeditor.world.Block;
 import com.cout970.worldeditor.world.Chunk;
 import com.cout970.worldeditor.world.ChunkStorage;
@@ -45,31 +43,31 @@ public class RenderManager {
 		for(Chunk c : ChunkStorage.storage){
 			renderChunk(c);
 		}
-		drawOverlay();
-		GLManager.camara.renderCamara();
+//		drawOverlay();
+//		GLManager.camara.renderCamara();
 	}
 
-	private static void drawOverlay() {
-		glPushMatrix();
-		glColor4f(1, 1, 1, 1);
-		glLineWidth(5);
-		RenderUtil.bindTexture(TextureManager.overlay);
-		RenderUtil.line(new Vector3(0,0,0),new Vector3(100,0,0));
-		RenderUtil.line(new Vector3(0,0,0),new Vector3(0,100,0));
-		RenderUtil.line(new Vector3(0,0,0),new Vector3(0,0,100));
-		glPopMatrix();
-	}
+//	private static void drawOverlay() {
+//		glPushMatrix();
+//		glColor4f(1, 1, 1, 1);
+//		glLineWidth(5);
+//		RenderUtil.bindTexture(TextureManager.overlay);
+//		RenderUtil.line(new Vector3(0,0,0),new Vector3(100,0,0));
+//		RenderUtil.line(new Vector3(0,0,0),new Vector3(0,100,0));
+//		RenderUtil.line(new Vector3(0,0,0),new Vector3(0,0,100));
+//		glPopMatrix();
+//	}
 
 	public static boolean shouldRender(Side s, Block block) {
 		if(WorldEditor.getSelectedBlock() == block)return true;
-		if(block.material.material.equalsIgnoreCase("AIR"))return false;
+		if(block.material.getMaterialName().equalsIgnoreCase("AIR"))return false;
 		int x = (int)block.getX()+s.OffsetX;
 		int y = (int)block.getY()+s.OffsetY;
 		int z = (int)block.getZ()+s.OffsetZ;
 
 		Block b = WorldEditor.getBlock(x, y, z);
 		if(b == null)return true;
-		if(b.material.material.equalsIgnoreCase("AIR"))return true;
+		if(b.material.getMaterialName().equalsIgnoreCase("AIR"))return true;
 		return false;
 	}
 
