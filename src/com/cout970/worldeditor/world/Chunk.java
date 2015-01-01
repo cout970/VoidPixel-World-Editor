@@ -11,7 +11,7 @@ public class Chunk {
 	@Expose
 	public Block[][][] Blocks = new Block[32][8][8];
 	@Expose
-	public boolean createBlock;
+	public boolean createdBlock;
 	
 	private int callList = -1;
 	
