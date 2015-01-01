@@ -44,6 +44,7 @@ public class Inicio {
 
 	private static void initUtil() {
 		GLManager.instance = new GLManager();
+		GLManager.setupDisplay();
 		GLManager.instance.InitDisplay();
 	}
 }

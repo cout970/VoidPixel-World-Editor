@@ -12,8 +12,8 @@ public class RayTracer {
 	public static Vector3f direction;
 	
 	public static void rayTracer(){
-		origin = UnprojectUtil.unproject(KeyLisener.MouseX, GLManager.instance.frameHeight-KeyLisener.MouseY, 0);
-		direction = UnprojectUtil.unproject(KeyLisener.MouseX, GLManager.instance.frameHeight-KeyLisener.MouseY, 1);
+		origin = UnprojectUtil.unproject(KeyLisener.MouseX, GLManager.frameHeight-KeyLisener.MouseY, 0);
+		direction = UnprojectUtil.unproject(KeyLisener.MouseX, GLManager.frameHeight-KeyLisener.MouseY, 1);
 		origin.y = -origin.y;
 		direction.y = -direction.y;
 		

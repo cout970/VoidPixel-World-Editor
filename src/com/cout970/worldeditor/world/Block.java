@@ -10,7 +10,6 @@ public class Block {
 	public Material material;
 	@Expose
 	public boolean voidness;
-	@Expose
 	public Location location = new Location();
 	
 	public boolean faceN;
