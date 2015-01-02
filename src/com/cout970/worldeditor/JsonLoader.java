@@ -32,7 +32,7 @@ public class JsonLoader {
 					for(int y = 0; y < c.Blocks.length; y++){
 						for(int z = 0; z < c.Blocks[0].length; z++){
 							for(int x = 0; x < c.Blocks[0][0].length; x++){
-								c.Blocks[y][z][x].location.X = x+c.X*c.Blocks[0][0].length;
+								c.Blocks[y][z][x].location.X = -x+c.X*c.Blocks[0][0].length+7;
 								c.Blocks[y][z][x].location.Y = y;
 								c.Blocks[y][z][x].location.Z = z+c.Z*c.Blocks[0].length;
 							}	

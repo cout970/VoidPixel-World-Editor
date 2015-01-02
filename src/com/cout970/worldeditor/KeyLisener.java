@@ -29,6 +29,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
 
 import com.cout970.worldeditor.WorldEditor.State;
+import com.cout970.worldeditor.gui.ToolBox;
 import com.cout970.worldeditor.world.Block;
 import com.cout970.worldeditor.world.Material;
 
@@ -170,7 +171,9 @@ public class KeyLisener {
 			if(Mouse.isButtonDown(0)){
 				if(!isLeftClick){
 					isLeftClick = true;
-					RayTracer.rayTracer();
+					if(!ToolBox.onClick(0)){
+						WorldEditor.handleClick(0);
+					}
 				}
 			}else{
 				isLeftClick = false;
@@ -178,6 +181,8 @@ public class KeyLisener {
 			if(Mouse.isButtonDown(1)){
 				if(!isRightClick){
 					isRightClick = true;
+					if(!ToolBox.onClick(1)){
+					}
 				}
 				GLManager.camara.addAngleX(Mouse.getDY()*0.1f);
 				GLManager.camara.addAngleY(Mouse.getDX()*0.1f);

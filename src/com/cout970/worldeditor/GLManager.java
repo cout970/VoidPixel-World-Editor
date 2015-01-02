@@ -14,8 +14,6 @@ public class GLManager {
 	public static GLManager instance;
 	public static final int frameHeight = 800;
 	public static final int frameWidth = 1000;
-//	public static final JFrame mainFrame = new JFrame();
-//	public static final Canvas glCanvas = new Canvas();
 	public static final Camara camara = new Camara();
 
 	public void InitDisplay(){
@@ -26,9 +24,6 @@ public class GLManager {
 			Display.setTitle("VoidPixel World Editor");
 
 			//initialitation OpenGL
-//			glCanvas.setSize(frameWidth, frameWidth);
-//			glCanvas.setVisible(true);
-//			Display.setParent(glCanvas);
 			Display.create();
 			
 			GL11.glEnable(GL11.GL_TEXTURE_2D);          
@@ -53,12 +48,9 @@ public class GLManager {
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	public static void setupDisplay(){
-//		mainFrame.setBounds(500, 50, frameWidth, frameHeight);
-//		mainFrame.setVisible(true);
 	}
 
 	public void preRender() {
@@ -73,4 +65,25 @@ public class GLManager {
 		GL11.glPopMatrix();
 	}
 	
+	public static void make2D() {
+//		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+		GL11.glPushMatrix();
+		GL11.glLoadIdentity();
+		GL11.glOrtho(0, frameWidth, 0, frameHeight, -1, 1);
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		GL11.glPushMatrix();
+		GL11.glLoadIdentity();
+		}
+
+	public static void make3D() {
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+		GL11.glPopMatrix();
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		GL11.glPopMatrix();
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+//		GL11.glEnable(GL11.GL_LIGHTING);
+		}
+
 }
