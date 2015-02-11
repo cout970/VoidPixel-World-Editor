@@ -189,6 +189,12 @@ public class KeyLisener {
 			}else{
 				isRightClick = false;
 			}
+			if(Mouse.isButtonDown(2)){
+				GLManager.camara.move(-Mouse.getDX()*0.03125f, 0, 0);
+				GLManager.camara.move(0, -Mouse.getDY()*0.03125f, 0);
+			}
+			
+			GLManager.camara.move(0, 0, Mouse.getDWheel()*0.0625f);
 		}
 		
 	}
